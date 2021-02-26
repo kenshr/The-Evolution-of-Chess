@@ -5,7 +5,6 @@
 [Feature Engineering](#feature-engineering)<br/>
 [Exploratory Data Analysis](#exploratory-data-analysis)<br/>
 [Hypothesis Testing: Average Game Length over Time](#hypothesis-testing-average-game-length)<br/>
-[Summary](#summary)<br/>
 [Future Questions](#future-questions)<br/>
 [References](#references)<br/>
 
@@ -62,15 +61,55 @@ These features proved to be much more useful for parsing through data and analyz
 
 ## Exploratory Data Analysis
 
+The table below shows summary statistics for each of the numerical features in the dataset.
+
+<img src='imgs/feature_statistics.png'>
+
+From these statistics, it seemed that the vast majority of the playerbase was playing at ratings that are at or near the rating you start with when you make an account (1200). To explore this further, I created a bar chart that put players into meaningful rating buckets to see how the number of games played in the dataset was distributed.
+
 <img src='imgs/games_per_rating_group.png'>
+
+As expected, the number of games drops drastically as we jump every 100-200 rating points. However, rather than following a linear descent all the way down, the number of games played forms a trough roughly in the 2200-2500 skill rating section. My initial impression as a chess player is that those ratings are often transitional for professional players who are climbing to reach the 2500+ rating bracket. This would require more analysis and a larger dataset specifically tailored to professional play to substantiate such a claim.
+
+Following this analysis, I wanted to see if there were any apparent meaningful correlations between any of the numerical features.
+
+<img src='imgs/corr_mtx.png'>
+
+While total moves showed a slight correlation to average rating, there were not any standout numbers that compelled me to look at them more closely.
+
+I shifted my focus to look at indiv
+
+<img src='imgs/random_user_rating_progression.png'>
+
+
+
+<img src='imgs/top_5_openings_per_ELO.png'>
 
 ## Hypothesis Testing
 
+The question I had that I wanted to answer with this hypothesis test is, "Has the average number of moves made in a game of chess changed over time?" With that in mind, I formulated these null and alternative hypotheses:
 
+**H<sub>0</sub>: There is no change in the number of moves made in chess games over time.**
 
-## Summary
+**H<sub>A</sub>: There has been a change in the number of moves made in chess games over time.**
 
-This project yielded interesting insights that could offer useful information to someone interested in chess.
+An alpha value of 0.05 was used in this hypothesis test to mitigate the chances of both a Type I and Type II error. Since I would be using the same year samples (2015, 2018, 2020) to conduct multiple hypothesis tests, I applied the Bonferroni Correction.
+
+$$ \frac{\alpha}{n} = \frac{0.05}{2} = 0.025 $$
+
+This yielded a new significance level of 0.025. The t-tests were then conducted using the Welch's adjustment since the sample sizes of games from each year varied greatly. The moves per game distributions of each sample used in the tests can be seen in the histogram below.
+
+<img src='imgs/YoY_moves_per_game_ttest.png'>
+
+The resultant p-values from the t-tests were all statistically significant with values:
+
+2015 vs 2018: 8.598593406221517e-11
+
+2018 vs 2020: 5.061220391600291e-128
+
+2015 vs 2020: 3.985461957690983e-78
+
+With these results, I rejected the null hypothesis and concluded that the there has been a change in the number of moves made in chess games over time. The length of games tends to be trending downward with each coming year.
 
 ## Future Questions
 
@@ -78,8 +117,7 @@ After completing this project, there are still many areas of interest left that 
 - Do players naturally improve over time?
 - Amongst the most popular openings commonly used in chess, are some inherently better than others?
 - Are there defining characteristics in playstyle that distinguish professional players from casual players?
--
-
+- What is the distribution of the frequency of professional players with each professional title (CM, FM, IM, GM)?
 
 ## References
 
