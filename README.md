@@ -62,7 +62,7 @@ These features proved to be much more useful for parsing through data and analyz
 
 ## Exploratory Data Analysis
 
-<img src='imgs/games_per_rating_group.png' width=255>
+<img src='imgs/games_per_rating_group.png'>
 
 ## Hypothesis Testing
 
