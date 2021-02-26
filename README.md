@@ -25,11 +25,11 @@ The answers to these questions serve to provide a concise overview that can info
 
 ## Data Preparation
 
-All of the data used for this project was pulled from the [Chess.com API](https://www.chess.com/news/view/published-data-api). The API is built in such a way that the largest form of data extraction for games is pulling all games for a specific month for any single player. In order to gather a sufficiently large dataset for this project, I needed a list of usernames. I began by gather the usernames of all the active players in Russia (~150,000). I took these usernames and randomly selected a 1500 person subset to pull games from.
+All of the data used for this project was pulled from the [Chess.com API](https://www.chess.com/news/view/published-data-api). The API is built in such a way that the largest form of data extraction for games is pulling all games for a specific month for any single player. In order to gather a sufficiently large dataset for this project, I needed a list of usernames. I began by collecting the usernames of all active players in Russia (~150,000). I took these usernames and randomly selected a 1500 person subset to pull games from.
 
-Once a username list was established, I set a requirement that all players must have at least 3 months of games logged in their archives in order for their games to be pulled. This decision was made to ensure that the final dataset was rich with information and not skewed by one-time players with a small set of games.
+Once a username list was established, I set a requirement that all players must have at least 3 months of games logged in their archives in order for their games to be pulled. Additonally, I set a requirement that the months of these games must be from the years 2015, 2018, or 2020. These decisions were made to ensure that the final dataset was rich with information and not skewed by one-time players with a small set of games. Furthermore, I wanted games that spanned a sizable period of time to analyze time-series data.
 
-The data that was extracted yielded the following dimensions:
+Applying these conditions resulted in a final list consisting of 383 players with 239,717 games played. The data that was extracted yielded the following dimensions:
 - URL
 - PGN ([Portable Game Notation](https://en.wikipedia.org/wiki/Portable_Game_Notation))
 - FEN ([Forsyth-Edwards Notation](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation))
@@ -62,19 +62,24 @@ These features proved to be much more useful for parsing through data and analyz
 
 ## Exploratory Data Analysis
 
-a
+<img src='imgs/games_per_rating_group.png' width=255>
 
 ## Hypothesis Testing
 
-a
+
 
 ## Summary
 
-a
+This project yielded interesting insights that could offer useful information to someone interested in chess.
 
 ## Future Questions
 
-a
+After completing this project, there are still many areas of interest left that I would like to explore. Some questions that I would like to answer next are:
+- Do players naturally improve over time?
+- Amongst the most popular openings commonly used in chess, are some inherently better than others?
+- Are there defining characteristics in playstyle that distinguish professional players from casual players?
+-
+
 
 ## References
 
