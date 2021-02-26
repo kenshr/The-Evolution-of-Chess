@@ -77,11 +77,11 @@ Following this analysis, I wanted to see if there were any apparent meaningful c
 
 While total moves showed a slight correlation to average rating, there were not any standout numbers that compelled me to look at them more closely.
 
-I shifted my focus to look at indiv
+I shifted my focus to look at individual player progression. Shown below are some example players and their rating progression over their lifetime on the website.
 
 <img src='imgs/random_user_rating_progression.png'>
 
-
+The final point I looked into during the EDA was openings. I was interested in seeing if there was a discernable difference in the openings people were using the most often.
 
 <img src='imgs/top_5_openings_per_ELO.png'>
 
