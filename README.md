@@ -4,7 +4,7 @@
 [Data Preparation](#data-preparation)<br/>
 [Feature Engineering](#feature-engineering)<br/>
 [Exploratory Data Analysis](#exploratory-data-analysis)<br/>
-[Hypothesis Testing: Average Game Length over Time](#hypothesis-testing-average-game-length)<br/>
+[Hypothesis Testing](#hypothesis-testing)<br/>
 [Future Questions](#future-questions)<br/>
 [References](#references)<br/>
 
@@ -14,9 +14,9 @@ Chess is an age-old game that traces back all the way to the 7th century. It has
 
 This project is an exploration of current chess trends and what is changing over time. It analyzes games spanning the last 5 years from a random subset of users playing at all levels from casual to professional. I perform exploratory data analysis and hypothesis testing to search for answers to the following questions:
 
-1. How does the way people play chess differ across different skill levels?
+1. What is the skill distribution across all chess players?
 
-2. What is the skill distribution across all chess players?
+2. How does the way people play chess differ across different skill levels?
 
 3. Is the game still changing?
 
@@ -57,6 +57,8 @@ There was an additional two columns, 'White' and 'Black', which contained player
 - Rating Difference
 - Average Rating
 
+One final feature that I generated was the 'ECO Short' column. Given that chess has so many potential openings (and variations within those openings), it was difficult to find meaningful information when trying to analyze aggregate data for the types of openings that people used. To counteract this, I wrote a script to parse through the openings and categorize them based on keywords irrespective of the specific variation of the opening that was played. This lowered the number of openings by an entire order of magnitude from 4438 to 515.
+
 These features proved to be much more useful for parsing through data and analyzing games.
 
 ## Exploratory Data Analysis
@@ -75,15 +77,21 @@ Following this analysis, I wanted to see if there were any apparent meaningful c
 
 <img src='imgs/corr_mtx.png'>
 
-While total moves showed a slight correlation to average rating, there were not any standout numbers that compelled me to look at them more closely.
+While total moves showed a slight correlation to average rating, there were not any standout numbers which suggested a very strong correlation.
 
-I shifted my focus to look at individual player progression. Shown below are some example players and their rating progression over their lifetime on the website.
+I shifted my focus to look at individual player progression. Shown below are some example players and their rating progression over their lifetime on the website. It is important to clarify that the data points used for each month are the average rating for the player across all games they played in that month.
 
 <img src='imgs/random_user_rating_progression.png'>
 
-The final point I looked into during the EDA was openings. I was interested in seeing if there was a discernable difference in the openings people were using the most often.
+It appears that a majority of the examples pictured here show an upward trend over time. However, this was not uniform across all players that I reviewed and would require a more thorough analysis in order to make conclusive statements on the subject.
+
+The final point I looked into during the EDA was openings. I was interested in seeing if there was a discernable difference in the openings people were using the most often. I chose to specifically analyze opening preferences across different rating buckets.
 
 <img src='imgs/top_5_openings_per_ELO.png'>
+
+These buckets were chosen because 1200 represents the starting rating that every new player gets when they sign up and 2200 represents the minimum rating cutoff for titled players (which I refer to as professionals).
+
+In the graph, we can see that roughly 25% of all games in the 0-1200 bucket start with King's or Queen's pawn openings, which is significantly higher than any other opening in that bucket. As we get to the mid-level players, the King's and Queen's pawn openings drop to a more modest 16%. There is also a rise in other common openings such as the Caro Kann and Modern Defense. Finally, in the professional bucket, we see that openings are much more evenly distributed, which suggests a wider breadth in the types of games played.
 
 ## Hypothesis Testing
 
@@ -109,7 +117,7 @@ The resultant p-values from the t-tests were all statistically significant with 
 
 2015 vs 2020: 3.985461957690983e-78
 
-With these results, I rejected the null hypothesis and concluded that the there has been a change in the number of moves made in chess games over time. The length of games tends to be trending downward with each coming year.
+With these results, I rejected the null hypothesis and concluded that the there has been a change in the number of moves made in chess games over time. The length of games tends to trend downward over time.
 
 ## Future Questions
 
